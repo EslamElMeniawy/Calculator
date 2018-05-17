@@ -7,6 +7,8 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var op = ""
+    private var oldNumber = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,45 +19,101 @@ class MainActivity : AppCompatActivity() {
         val selectedButton = view as Button
         var currentData: String = tvResult.text.toString()
 
-        if (currentData == "0") {
+        if (currentData == getString(R.string.zero)) {
             currentData = ""
         }
 
+        if (oldNumber == "0") {
+            currentData = ""
+            oldNumber = ""
+        }
+
         when (selectedButton.id) {
-            bt0.id -> currentData += "0"
-            bt1.id -> currentData += "1"
-            bt2.id -> currentData += "2"
-            bt3.id -> currentData += "3"
-            bt4.id -> currentData += "4"
-            bt5.id -> currentData += "5"
-            bt6.id -> currentData += "6"
-            bt7.id -> currentData += "7"
-            bt8.id -> currentData += "8"
-            bt9.id -> currentData += "9"
+            bt0.id -> currentData += getString(R.string.zero)
+            bt1.id -> currentData += getString(R.string.one)
+            bt2.id -> currentData += getString(R.string.two)
+            bt3.id -> currentData += getString(R.string.three)
+            bt4.id -> currentData += getString(R.string.four)
+            bt5.id -> currentData += getString(R.string.five)
+            bt6.id -> currentData += getString(R.string.six)
+            bt7.id -> currentData += getString(R.string.seven)
+            bt8.id -> currentData += getString(R.string.eight)
+            bt9.id -> currentData += getString(R.string.nine)
 
             btDot.id -> {
                 if (currentData.isEmpty()) {
-                    currentData = "0"
+                    currentData = getString(R.string.zero)
                 }
 
-                if (!currentData.contains(".")) {
-                    currentData += "."
+                if (!currentData.contains(getString(R.string.dot))) {
+                    currentData += getString(R.string.dot)
                 }
             }
-            
+
             btPlusMinus.id -> {
                 currentData = if (currentData.isEmpty()) {
-                    "0"
+                    getString(R.string.zero)
                 } else {
-                    if (currentData.contains("-")) {
-                        currentData.replace("-", "")
+                    if (currentData.contains(getString(R.string.minus))) {
+                        currentData.replace(getString(R.string.minus), "")
                     } else {
-                        "-$currentData"
+                        getString(R.string.minus) + currentData
                     }
                 }
             }
         }
 
         tvResult.text = currentData
+    }
+
+    fun operationsEvents(view: View) {
+        oldNumber = tvResult.text.toString()
+
+        if (!oldNumber.isEmpty() && oldNumber != getString(R.string.zero)) {
+            val selectedButton = view as Button
+
+            when (selectedButton.id) {
+                btDiv.id -> {
+                    op = "/"
+                }
+                btMul.id -> {
+                    op = "*"
+                }
+                btSub.id -> {
+                    op = "-"
+                }
+                btSum.id -> {
+                    op = "+"
+                }
+            }
+
+            tvResult.text = ""
+        }
+    }
+
+    fun equalClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        val newNumber = tvResult.text.toString()
+        var result: Double? = null
+
+        if (!newNumber.isEmpty()) {
+            when (op) {
+                "/" -> {
+                    result = oldNumber.toDouble() / newNumber.toDouble()
+                }
+                "*" -> {
+                    result = oldNumber.toDouble() * newNumber.toDouble()
+                }
+                "-" -> {
+                    result = oldNumber.toDouble() - newNumber.toDouble()
+                }
+                "+" -> {
+                    result = oldNumber.toDouble() + newNumber.toDouble()
+                }
+            }
+
+            tvResult.text = result.toString()
+            op = ""
+            oldNumber = "0"
+        }
     }
 }

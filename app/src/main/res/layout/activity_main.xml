@@ -68,7 +68,7 @@
         android:layout_marginEnd="1dp"
         android:text="@string/percent"
         app:layout_constraintBottom_toTopOf="@+id/bt9"
-        app:layout_constraintEnd_toStartOf="@+id/btDivision"
+        app:layout_constraintEnd_toStartOf="@+id/btDiv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/btPlusMinus"
@@ -76,13 +76,14 @@
         app:layout_constraintVertical_weight="1" />
 
     <Button
-        android:id="@+id/btDivision"
+        android:id="@+id/btDiv"
         style="@style/SignsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
+        android:onClick="operationsEvents"
         android:text="@string/division"
-        app:layout_constraintBottom_toTopOf="@+id/btMultiply"
+        app:layout_constraintBottom_toTopOf="@+id/btMul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
@@ -134,7 +135,7 @@
         android:onClick="numbersEvents"
         android:text="@string/nine"
         app:layout_constraintBottom_toTopOf="@+id/bt6"
-        app:layout_constraintEnd_toStartOf="@+id/btMultiply"
+        app:layout_constraintEnd_toStartOf="@+id/btMul"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt8"
@@ -142,18 +143,19 @@
         app:layout_constraintVertical_weight="1" />
 
     <Button
-        android:id="@+id/btMultiply"
+        android:id="@+id/btMul"
         style="@style/SignsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
+        android:onClick="operationsEvents"
         android:text="@string/multiply"
-        app:layout_constraintBottom_toTopOf="@+id/btMinus"
+        app:layout_constraintBottom_toTopOf="@+id/btSub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt9"
-        app:layout_constraintTop_toBottomOf="@+id/btDivision"
+        app:layout_constraintTop_toBottomOf="@+id/btDiv"
         app:layout_constraintVertical_weight="1" />
 
     <Button
@@ -200,7 +202,7 @@
         android:onClick="numbersEvents"
         android:text="@string/six"
         app:layout_constraintBottom_toTopOf="@+id/bt3"
-        app:layout_constraintEnd_toStartOf="@+id/btMinus"
+        app:layout_constraintEnd_toStartOf="@+id/btSub"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt5"
@@ -208,18 +210,19 @@
         app:layout_constraintVertical_weight="1" />
 
     <Button
-        android:id="@+id/btMinus"
+        android:id="@+id/btSub"
         style="@style/SignsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
+        android:onClick="operationsEvents"
         android:text="@string/minus"
-        app:layout_constraintBottom_toTopOf="@+id/btPlus"
+        app:layout_constraintBottom_toTopOf="@+id/btSum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt6"
-        app:layout_constraintTop_toBottomOf="@+id/btMultiply"
+        app:layout_constraintTop_toBottomOf="@+id/btMul"
         app:layout_constraintVertical_weight="1" />
 
     <Button
@@ -265,7 +268,7 @@
         android:onClick="numbersEvents"
         android:text="@string/three"
         app:layout_constraintBottom_toTopOf="@+id/btDot"
-        app:layout_constraintEnd_toStartOf="@+id/btPlus"
+        app:layout_constraintEnd_toStartOf="@+id/btSum"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt2"
@@ -273,18 +276,19 @@
         app:layout_constraintVertical_weight="1" />
 
     <Button
-        android:id="@+id/btPlus"
+        android:id="@+id/btSum"
         style="@style/SignsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
+        android:onClick="operationsEvents"
         android:text="@string/plus"
         app:layout_constraintBottom_toTopOf="@+id/btEqual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/bt3"
-        app:layout_constraintTop_toBottomOf="@+id/btMinus"
+        app:layout_constraintTop_toBottomOf="@+id/btSub"
         app:layout_constraintVertical_weight="1" />
 
     <Button
@@ -325,12 +329,13 @@
         style="@style/SignsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:onClick="equalClicked"
         android:text="@string/equal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/btDot"
-        app:layout_constraintTop_toBottomOf="@+id/btPlus"
+        app:layout_constraintTop_toBottomOf="@+id/btSum"
         app:layout_constraintVertical_weight="1" />
 </android.support.constraint.ConstraintLayout>
