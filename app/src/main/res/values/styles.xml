@@ -8,8 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ResultText">
+        <item name="android:background">@color/darkGray</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/ResultTextSize</item>
+    </style>
+
     <style name="CalculatorButton">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/ButtonTextSize</item>
     </style>
 
     <style name="NumbersButton" parent="CalculatorButton">

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ ~ dimens.xml
+ ~
+ ~ Created by Eslam El-Meniawy.
+ ~ CITC - Mansoura University
+ -->
+<resources>
+    <dimen name="ResultTextSize">35sp</dimen>
+    <dimen name="ButtonTextSize">25sp</dimen>
+</resources>
