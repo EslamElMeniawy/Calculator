@@ -122,4 +122,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun percentClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        val number = tvResult.text.toString()
+
+        if (!number.isEmpty()) {
+            tvResult.text = (number.toDouble() / 100).toString()
+        }
+    }
+
+    fun cleanClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        op = ""
+        oldNumber = ""
+        opDone = false
+        tvResult.text = getString(R.string.zero)
+    }
 }
