@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var op = ""
     private var oldNumber = ""
+    private var opDone = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +24,9 @@ class MainActivity : AppCompatActivity() {
             currentData = ""
         }
 
-        if (oldNumber == "0") {
+        if (opDone && selectedButton.id != btPlusMinus.id) {
             currentData = ""
-            oldNumber = ""
+            opDone = false
         }
 
         when (selectedButton.id) {
@@ -69,7 +70,8 @@ class MainActivity : AppCompatActivity() {
     fun operationsEvents(view: View) {
         oldNumber = tvResult.text.toString()
 
-        if (!oldNumber.isEmpty() && oldNumber != getString(R.string.zero)) {
+        if (!oldNumber.isEmpty()) {
+
             val selectedButton = view as Button
 
             when (selectedButton.id) {
@@ -88,32 +90,36 @@ class MainActivity : AppCompatActivity() {
             }
 
             tvResult.text = ""
+            opDone = false
         }
     }
 
     fun equalClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        val newNumber = tvResult.text.toString()
-        var result: Double? = null
+        if (!oldNumber.isEmpty() && !op.isEmpty()) {
+            val newNumber = tvResult.text.toString()
+            var result: Double? = null
 
-        if (!newNumber.isEmpty()) {
-            when (op) {
-                "/" -> {
-                    result = oldNumber.toDouble() / newNumber.toDouble()
+            if (!newNumber.isEmpty()) {
+                when (op) {
+                    "/" -> {
+                        result = oldNumber.toDouble() / newNumber.toDouble()
+                    }
+                    "*" -> {
+                        result = oldNumber.toDouble() * newNumber.toDouble()
+                    }
+                    "-" -> {
+                        result = oldNumber.toDouble() - newNumber.toDouble()
+                    }
+                    "+" -> {
+                        result = oldNumber.toDouble() + newNumber.toDouble()
+                    }
                 }
-                "*" -> {
-                    result = oldNumber.toDouble() * newNumber.toDouble()
-                }
-                "-" -> {
-                    result = oldNumber.toDouble() - newNumber.toDouble()
-                }
-                "+" -> {
-                    result = oldNumber.toDouble() + newNumber.toDouble()
-                }
+
+                tvResult.text = result.toString()
+                op = ""
+                oldNumber = result.toString()
+                opDone = true
             }
-
-            tvResult.text = result.toString()
-            op = ""
-            oldNumber = "0"
         }
     }
 }
